@@ -2,6 +2,7 @@
 
 import os
 import sys
+import pathlib
 import subprocess
 
 cf_folder = "/home/manchot/.Scripts/cf_folder/confs"
@@ -22,9 +23,16 @@ with open(cf_db) as file:
 
 def create_symlinks_from_db_file():
     for path in cfs_path:
-        os.remove(path)
-        file = os.path.basename(path)
-        os.symlink(f"/{cf_folder}/{file}", path)
+        try:
+            dir_path = os.path.dirname(path)
+            pathlib.Path(dir_path).mkdir(parents=True, exist_ok=True)
+            if os.path.isfile(path):
+                os.remove(path)
+            file = os.path.basename(path)
+            os.symlink(f"/{cf_folder}/{file}", path)
+            print(f"{path} installed")
+        except:
+            print(f"{path} failed")
 
 def get_max_len(arr):
     return max([len(i) for i in arr])
@@ -74,7 +82,12 @@ match len(sys.argv):
     case 4:
         swap_files()
     case 2:
-        open_file(sys.argv[1])
+        if sys.argv[1] == '--help':
+            print("cf install")
+        if sys.argv[1] == 'install':
+            create_symlinks_from_db_file()
+        else:
+            open_file(sys.argv[1])
     case _:
         print_info()
 
