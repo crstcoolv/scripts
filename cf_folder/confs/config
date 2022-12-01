@@ -3,7 +3,7 @@ set $mod Mod4
 
 font pango:monospace 8
 for_window[class="Gnome-screenshot"] floating enable focus
-for_window[class="pinentry-qt"] focus
+for_window[class="pinentry-qt"] floating enable focus
 for_window [class="ghcid"] resize set width 50 ppt 
 for_window [class="mocp"] fullscreen enable
 assign [class="castero"] castero
