@@ -11,4 +11,4 @@ pc /home/manchot/.config/picom.conf picom
 v /home/manchot/.config/nvim/init.vim nvim
 touchpad /etc/X11/xorg.conf.d/30-touchpad.conf Xorg-touchpad
 monitor /etc/X11/xorg.conf.d/90-monitor.conf Xorg-monitor
-moc /home/manchot/.moc mocp
+pinentry /home/manchot/.gnupg/gpg-agent.conf gpg-agent
