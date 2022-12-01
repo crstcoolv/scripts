@@ -1,0 +1,35 @@
+#!/bin/bash
+
+STATUS=$(acpi | awk '{print $3}')
+
+if [[ $STATUS == 'Discharging,' ]]; then
+  LEVEL=$(acpi | awk '{print $4}')
+  REMAINING=$(acpi | awk '{print $5}')
+
+  TLEFT=$(tr ':' 'h' <<< ${REMAINING::-3})
+  echo $STATUS $LEVEL $TLEFT left
+  
+  PLEVEL=${LEVEL::-2}
+  
+  if [[ $PLEVEL -eq 10 ]]; then
+    i3-nagbar -m 'Bateria fraca 10%' -B 'Desligar ?' 'poweroff' > /dev/null
+  elif [[ $PLEVEL -eq 5 ]]; then
+    notify-send "Desligando"
+    poweroff
+  fi
+
+elif [[ $STATUS == 'Charging,' ]]; then
+  LEVEL=$(acpi | awk '{print $4}')
+  REMAINING=$(acpi | awk '{print $5}')
+  FIS=${REMAINING::-7}
+  
+  if [[ $FIS != '0' ]]; then
+    REMAINING="Calculating......"
+  else
+    TLEFT=$(tr ':' 'h' <<< ${REMAINING::-3})
+    echo $STATUS $LEVEL $TLEFT to full
+  fi
+else
+  echo
+fi
+

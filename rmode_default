@@ -1,0 +1,4 @@
+#!/bin/bash
+
+dunstify -C 554
+i3-msg -t command 'mode "default"'

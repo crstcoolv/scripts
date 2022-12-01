@@ -1,0 +1,80 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+import subprocess
+
+cf_folder = "/home/manchot/.Scripts/cf_folder/confs"
+cf_db   = "/home/manchot/.Scripts/cf_folder/db_file"
+
+
+cfs = []
+cfs_path = []
+cfs_info = []
+
+with open(cf_db) as file:
+    for line in file.readlines():
+       column = line.replace("\n","").split(" ")
+       cfs.append(column[0])
+       cfs_path.append(column[1])
+       cfs_info.append(" ".join(column[2:]))
+
+
+def create_symlinks_from_db_file():
+    for path in cfs_path:
+        os.remove(path)
+        file = os.path.basename(path)
+        os.symlink(f"/{cf_folder}/{file}", path)
+
+def get_max_len(arr):
+    return max([len(i) for i in arr])
+
+
+def print_info():
+    print("To add: cf [cmd] [file] [description]\n")
+    for cmd, desc in zip(cfs, cfs_info):
+        print(f"{' '*(get_max_len(cfs) - len(cmd))} [{cmd}] ->  {desc}")
+    cmd = input("cmd: ")
+    if cmd:
+        open_file(cmd)
+
+
+
+def get_cmd_path(cmd):
+    if cmd in cfs:
+        return cfs_path[cfs.index(cmd)]
+    else:
+        return False
+
+def add_conf(cmd, path, desc):
+    with open(cf_db, 'a') as file:
+        file.write(f"{cmd} {path} {desc}\n")
+
+
+def swap_files():
+    file = sys.argv[2]
+    cf_file = f"{os.getcwd()}/{file}"
+    cf_file_path = f"{cf_folder}/{file}"
+    if os.path.exists(cf_file):
+        os.replace(cf_file, cf_file_path)
+        os.symlink(cf_file_path, cf_file)
+
+        add_conf(sys.argv[1], cf_file, sys.argv[3])
+    else:
+        print("file does not exists")
+
+def open_file(cmd):
+    if path := get_cmd_path(cmd):
+        subprocess.run(["nvim", f"{path}"])
+    else:
+        print("cmd not valid!\n")
+        print_info()
+
+match len(sys.argv):
+    case 4:
+        swap_files()
+    case 2:
+        open_file(sys.argv[1])
+    case _:
+        print_info()
+

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+MODE=$(cat /sys/devices/platform/lg-laptop/fan_mode)
+
+if [[ $MODE == '1' ]]; then
+  echo "******* ECONOMIC ********"
+else
+  echo
+fi

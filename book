@@ -1,0 +1,7 @@
+#!/bin/bash
+
+name=$(ls /home/manchot/Documents/books | rofi -font "Fira Code 13" -theme Arc-Dark -dmenu -p "Select book: " -i)
+
+if [[ -f "/home/manchot/Documents/books/$name" ]]; then
+  zathura  "/home/manchot/Documents/books/$name"
+fi

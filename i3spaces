@@ -1,0 +1,21 @@
+#!/bin/bash
+
+readarray -t WKS <  <(i3-msg -t get_workspaces | jq -c '.[]')
+
+WS=""
+
+for i in ${WKS[@]}; do
+  
+  NUM="$(echo $i | jq '.name' | sed 's/\"//g')"
+  
+  if [[ "$(echo $i | jq '.focused')"  == 'true' ]]; then
+    WS+=" [${NUM}]"
+  else
+    if [[ $NUM != "castero" ]]; then
+      WS+=" ${NUM}"
+    fi
+  fi
+done
+
+notify-send -u low -r 9993 -t 900 "$WS"
+

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+TORRENTS="$(transmission-remote -l | awk 'NR>2 {print last} {last=$1}')"
+
+for i in $TORRENTS ; do
+  if [[ $i =~ [\$\*] ]]; then
+    transmission-remote -t "${i::-1}" -r
+  fi
+done

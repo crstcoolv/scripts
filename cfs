@@ -1,0 +1,55 @@
+#!/bin/bash
+
+folder="$HOME/cfs"
+db_file="$folder/db_file"
+
+mkdir -p $folder
+touch $db_file
+
+readarray -t cmd < <(awk '{print $1}' $db_file)
+readarray -t path < <(awk '{print $2}' $db_file)
+readarray -t desc < <(awk '{print $3}' $db_file)
+
+print_info(){
+  for i in "${!cmd[@]}"; do
+    echo "${cmd[$i]} -> ${desc[$i]}"
+  done
+}
+
+is_cmd_valid(){
+  [[ "${cmd[@]} =~ $1 }" ]]
+}
+
+get_path(){
+  # $1 cmd
+  if (is_cmd_valid $1); then
+    for i in "${!cmd[@]}"; do
+      if [[ "${cmd[$i]}" == $1 ]]; then
+        echo "${path[$i]}" 
+      fi
+    done
+  else
+    echo "cmd invalid ! [$1]"
+  fi
+}
+
+edit_file(){
+  # $1 cmd
+  local path=$(get_path $1)
+  if [[ $path != "" ]] && [[ -f $path ]]; then
+    nvim $path 
+  elif [[ $path == "" ]]; then
+    echo "path not valid: $path"
+  fi
+}
+
+
+case $# in
+  0)
+    print_info
+    ;;
+  1)
+    edit_file $1
+    ;;
+esac
+

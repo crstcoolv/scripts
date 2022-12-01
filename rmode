@@ -1,0 +1,4 @@
+#!/bin/bash
+
+dunstify -r 554 -t 99999 "RESIZE MODE"
+i3-msg -t command 'mode "resize"'

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+MUTE=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')
+
+if [[ $MUTE == 'yes' ]]; then
+  echo "  "Mute
+else
+  echo Vol $(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}')
+
+fi
+

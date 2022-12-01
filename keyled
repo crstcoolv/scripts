@@ -1,0 +1,12 @@
+#!/bin/bash
+
+STATE=$(cat /sys/devices/platform/lg-laptop/leds/kbd_backlight/brightness)
+
+if [[ $STATE == '0' ]]; then
+	echo 127 > /sys/devices/platform/lg-laptop/leds/kbd_backlight/brightness
+#elif [[ $STATE == '127' ]]; then
+#	echo 255 > /sys/devices/platform/lg-laptop/leds/kbd_backlight/brightness
+else
+	echo 0 > /sys/devices/platform/lg-laptop/leds/kbd_backlight/brightness
+fi
+

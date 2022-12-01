@@ -1,0 +1,10 @@
+#!/bin/bash
+
+copen=$(wmctrl -l | grep castero)
+
+if [[ $copen != "" ]]; then
+  i3-msg workspace castero
+else
+  i3-msg workspace castero
+  kitty castero
+fi

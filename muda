@@ -1,0 +1,20 @@
+#!/bin/bash
+
+last_line="$(tail -1 /home/manchot/.xinitrc)"
+
+
+muda_file(){
+  echo "$(head -n-1  /home/manchot/.xinitrc)" > /home/manchot/.xinitrc
+  echo $1 >> /home/manchot/.xinitrc
+}
+
+if [[ $last_line == "exec i3" ]]; then
+  muda_file "exec startxfce4"
+  i3-msg exit
+else
+  muda_file "exec i3"
+  xfce4-session-logout --logout
+fi 
+
+
+

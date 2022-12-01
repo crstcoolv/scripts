@@ -1,0 +1,10 @@
+#!/bin/bash
+
+BT=$(bluetoothctl info | grep Batte | awk -F '[()]' '{print $2}')
+Name=$(bluetoothctl info | grep Name)
+
+if [[ $BT != '' ]]; then
+  echo "${Name#*:}: $BT"%
+else
+  echo
+fi
