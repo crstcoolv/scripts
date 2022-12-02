@@ -1,5 +1,6 @@
 # teste#
 set -x EDITOR nvim
+set -x R_LIBS_USER /home/manchot/.local/R
 
 fish_add_path /home/manchot/.Scripts
 fish_add_path /home/manchot/.local/bin

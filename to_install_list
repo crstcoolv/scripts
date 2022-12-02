@@ -33,3 +33,4 @@ vifm
 wpa_supplicant
 xf86-video-intel
 xorg-xkill
+iwctl
