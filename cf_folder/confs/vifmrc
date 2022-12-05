@@ -333,16 +333,15 @@ filetype {*.7z},<application/x-7z-compressed>
 fileviewer {*.7z},<application/x-7z-compressed> 7z l %c
 
 " Office files
-filextype {*.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx,*.ppt},
-         \<application/vnd.openxmlformats-officedocument.*,
-          \application/msword,
-          \application/vnd.ms-excel>
-        \ libreoffice %f &
+filextype {*.odt,*.doc,*.docx,*.xls,*.xlsx,*.odp,*.pptx,*.ppt, *.ods},
+        \ libreoffice %f %i &
 fileviewer {*.doc},<application/msword> catdoc %c
 fileviewer {*.docx},
           \<application/
            \vnd.openxmlformats-officedocument.wordprocessingml.document>
          \ docx2txt.pl %f -
+filextype *.doc,*.docx,*.xsl,*.xlsx,*.ods,*.odt libreoffice %f %i &
+
 
 " TuDu files
 filetype *.tudu tudu -f %c
