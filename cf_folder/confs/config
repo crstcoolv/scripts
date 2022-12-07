@@ -221,6 +221,7 @@ bindsym $mod+r exec --no-startup-id rmode
 exec --no-startup-id picom 
 exec --no-startup-id conky 
 exec --no-startup-id dunst
+exec --no-startup-id volume mute
 exec --no-startup-id feh --bg-scale ~/.config/wall.jpg
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ mute  

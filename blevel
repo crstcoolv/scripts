@@ -12,11 +12,18 @@ if [[ $STATUS == 'Discharging,' ]]; then
   PLEVEL=${LEVEL::-2}
   
   if [[ $PLEVEL -eq 10 ]]; then
-    i3-nagbar -m 'Bateria fraca 10%' -B 'Desligar ?' 'poweroff' > /dev/null
+    dunstify -u "critical" 'Bateria fraca -- 10%'
   elif [[ $PLEVEL -eq 5 ]]; then
-    notify-send "Desligando"
+    notify-send "Desligando em 1 minuto"
+    sleep 60
+
+
+    STATUS=$(acpi | awk '{print $3}')
+
+  if [[ $STATUS == 'Discharging,' ]]; then
     poweroff
-  fi
+  fi  
+fi
 
 elif [[ $STATUS == 'Charging,' ]]; then
   LEVEL=$(acpi | awk '{print $4}')
