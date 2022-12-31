@@ -3,6 +3,7 @@ set $mod Mod4
 
 font pango:monospace 8
 for_window[class="Gnome-screenshot"] floating enable focus
+for_window[title="Blender Preferences"] floating enable focus move position center 
 for_window[class="pinentry-qt"] floating enable focus
 for_window [class="ghcid"] resize set width 50 ppt 
 for_window [class="mocp"] fullscreen enable
@@ -172,7 +173,7 @@ bindsym $mod+6 exec --no-startup-id wspaces 6
 bindsym $mod+7 exec --no-startup-id wspaces 7
 bindsym $mod+8 exec --no-startup-id wspaces 8 
 bindsym $mod+9 exec --no-startup-id wspaces 9 
-bindsym $mod+Tab exec --no-startup-id cast 
+# bindsym $mod+Tab exec --no-startup-id  workspaces previus 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
@@ -221,7 +222,6 @@ bindsym $mod+r exec --no-startup-id rmode
 exec --no-startup-id picom 
 exec --no-startup-id conky 
 exec --no-startup-id dunst
-exec --no-startup-id volume mute
 exec --no-startup-id feh --bg-scale ~/.config/wall.jpg
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ mute  
