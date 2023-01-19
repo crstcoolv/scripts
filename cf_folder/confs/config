@@ -3,6 +3,7 @@ set $mod Mod4
 
 font pango:monospace 8
 for_window[class="Gnome-screenshot"] floating enable focus
+for_window[class="Mail"] floating enable focus
 for_window[title="Blender Preferences"] floating enable focus move position center 
 for_window[class="pinentry-qt"] floating enable focus
 for_window [class="ghcid"] resize set width 50 ppt 
@@ -227,6 +228,6 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ mute  
 exec --no-startup-id xbacklight -set 3
 # exec --no-startup-id insync start
-exec --no-startup-id redshift
+# exec --no-startup-id redshift
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
