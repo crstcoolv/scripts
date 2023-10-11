@@ -1,0 +1,11 @@
+#!/bin/bash
+
+LED_STATUS=$(cat /sys/devices/platform/lg-laptop/reader_mode)
+
+if [[ $LED_STATUS == "0" ]]; then
+  echo 1 > /sys/devices/platform/lg-laptop/reader_mode
+  gromit-mpx --toggle
+else
+  echo 0 > /sys/devices/platform/lg-laptop/reader_mode
+  gromit-mpx --toggle
+fi

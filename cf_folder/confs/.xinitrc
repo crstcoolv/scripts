@@ -1,5 +1,5 @@
 setxkbmap -model abnt2 -layout br
-xmodmap ~/.xmodmap
+xmodmap .xmodmap
 xrdb ~/.Xresources
 xrandr --dpi 124
 sudo gramconfig

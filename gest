@@ -1,0 +1,44 @@
+#!/usr/bin/env python3
+
+
+import subprocess
+import sys
+import os
+
+action = sys.argv[1]
+
+cl = subprocess.check_output(['xdotool','getactivewindow','getwindowclassname'])
+name = subprocess.check_output(['xdotool','getactivewindow','getwindowname'])
+
+fullscreen = subprocess.check_output(["check_active_window"]).decode()
+
+if fullscreen == "sim\n":
+
+
+    vifm = {"down":"key j", "up":"key k", "right":"key h","left":"key l"}
+    brave = {"down":"", "up":"", "left":"key ctrl+Shift+Tab", "right":"key ctrl+Tab", "hold":""}
+
+    if "YouTube" in f"{name}":
+        brave["hold"] = "key space"
+        brave["up"] = "key f"
+        brave["down"] = "key f"
+    else:
+        brave["hold"] = "key F9"
+
+
+    match cl:
+
+        case b"Brave-browser\n":
+            os.system(f"xdotool {brave[action]}")
+
+        case b"vifm\n":
+            os.system(f"xdotool {vifm[action]}")
+
+else:
+    match action:
+        case "left":
+            os.system(f"i3 focus prev")
+        case "right":
+            os.system(f"i3 focus next")
+        case "up":
+            os.system(f"i3 fullscreen toggle")

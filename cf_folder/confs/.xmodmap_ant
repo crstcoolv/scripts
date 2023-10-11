@@ -1,0 +1,10 @@
+clear Lock
+keycode 66 = slash
+keycode 24 = q Q q Q diaeresis
+keycode 108 = yen
+keycode 50 = ISO_Level3_Shift
+keycode 44 = j J j J onehalf
+keycode 25 = w W w W onequarter
+keycode 94 = backslash bar backslash bar Caps_Lock
+keycode 48 = dead_tilde dead_circumflex dead_tilde dead_circumflex question
+

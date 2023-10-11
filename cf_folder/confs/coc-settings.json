@@ -9,4 +9,5 @@
     "filetypes": ["haskell", "lhaskell"]
   }
 },
+"snippets.ultisnips.pythonPrompt": false,
 }

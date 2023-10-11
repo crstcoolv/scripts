@@ -1,11 +1,6 @@
-clear Lock
-keycode 66 = slash
-keycode 24 = q Q q Q diaeresis
-keycode 108 = yen
-keycode 50 = ISO_Level3_Shift
-keycode 64 = Shift_L
-keycode 44 = j J j J onehalf
-keycode 25 = w W w W onequarter
-keycode 94 = backslash bar backslash bar Caps_Lock
-keycode 48 = dead_tilde dead_circumflex dead_tilde dead_circumflex question
-
+keycode 61 = slash question slash question degree questiondown degree
+keycode 97 = semicolon colon semicolon colon dead_belowdot dead_abovedot dead_belowdot
+keycode  48 = bracketleft braceleft bracketleft braceleft ordfeminine dead_macron ordfeminine
+keycode  35 = dead_tilde dead_circumflex dead_tilde dead_circumflex asciitilde asciicircum asciitilde
+keycode 110 = Delete NoSymbol Delete
+keycode 119 = Home NoSymbol Home

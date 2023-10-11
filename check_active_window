@@ -1,0 +1,9 @@
+#!/bin/bash
+
+GEOMETRY=$(xdotool getactivewindow getwindowgeometry | grep Geo | awk '{print $2}')
+
+if [[ $GEOMETRY == "1920x1080" ]]; then
+  echo "sim"
+else
+  echo "nao"
+fi

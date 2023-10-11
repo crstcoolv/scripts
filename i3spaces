@@ -4,10 +4,17 @@ readarray -t WKS <  <(i3-msg -t get_workspaces | jq -c '.[]')
 
 WS=""
 
+MAXI=0
+
 for i in ${WKS[@]}; do
   
   NUM="$(echo $i | jq '.name' | sed 's/\"//g')"
-  
+
+
+  if (($NUM > $MAXI)); then
+    MAXI=$NUM
+  fi
+
   if [[ "$(echo $i | jq '.focused')"  == 'true' ]]; then
     WS+=" [${NUM}]"
   else
@@ -16,6 +23,11 @@ for i in ${WKS[@]}; do
     fi
   fi
 done
+
+
+if [[ $2 ]]; then
+  i3 workspace $(($MAXI+1))
+fi
 
 notify-send -u low -r 9993 -t 900 "$WS"
 

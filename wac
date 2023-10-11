@@ -1,0 +1,26 @@
+#!/bin/bash
+
+export DISPLAY=:0
+export XAUTHORITY=/home/manchot/.Xauthority
+
+
+sleep 1
+
+ID=$(xsetwacom list devices | grep -m1 id | awk '{print $9}')
+
+ACCEL_CONST=$(xinput list-props $ID | grep "Accel Cons" | awk -F"[()]" '{print $2}')
+ACCEL_VEL=$(xinput list-props $ID | grep "Accel Velo" | awk -F"[()]" '{print $2}')
+
+
+if [[ $ID != "" ]]; then
+  xsetwacom set $ID Rotate half
+  xsetwacom set $ID Area 0 0 15200 8550
+  xsetwacom set $ID Mode Relative
+  xsetwacom set $ID CursorProximity 15
+
+  xinput set-prop $ID $ACCEL_CONST 1.7
+  xinput set-prop $ID $ACCEL_VEL 1
+
+fi
+
+

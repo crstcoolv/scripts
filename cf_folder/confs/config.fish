@@ -4,10 +4,13 @@ set -x R_LIBS_USER /home/manchot/.local/R
 
 fish_add_path /home/manchot/.Scripts
 fish_add_path /home/manchot/.local/bin
+fish_add_path /home/manchot/.local/share/gem/ruby/3.0.0/bin
 
 set fish_greeting
 
 alias pw="poweroff"
+alias kb="setxkbmap -model abnt2 -layout br; xmodmap .xmodmap"
+alias py="python"
 alias yt="youtube-dl -x --audio-format mp3 "
 alias bm="bashmount"
 alias tm="transmission-remote -l"
@@ -50,8 +53,11 @@ export FZF_DEFAULT_OPTS='
 fish_add_path /home/manchot/.cargo/bin
 #set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/manchot/.ghcup/bin $PATH # ghcup-env
 
-set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/manchot/.ghcup/bin $PATH # ghcup-env
+#set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/manchot/.ghcup/bin $PATH # ghcup-env
 
 function fish_right_prompt
   #intentionally left blank
 end
+
+#set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /home/manchot/.ghcup/bin # ghcup-env
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/manchot/.ghcup/bin $PATH # ghcup-env

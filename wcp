@@ -1,0 +1,22 @@
+#!/bin/bash
+
+wacom_calls="/tmp/wacom_calls"
+
+# if we don't have a file, start at zero
+if [ ! -f "$wacom_calls" ]; then
+    call=0
+
+# otherwise read the value from the file
+else
+    call=$(cat "$wacom_calls")
+fi
+
+call=$((call + 1))
+echo "${call}" > "$wacom_calls"
+
+if [[ $call < 2 ]]; then
+    gromit-mpx --toggle
+else
+    echo "0" > "$wacom_calls"
+fi
+
