@@ -1,0 +1,1 @@
+ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="056a", ATTRS{idProduct}=="037a", RUN+="/usr/bin/at now -f /home/manchot/.Scripts/wac"

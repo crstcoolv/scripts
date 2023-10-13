@@ -1,0 +1,1 @@
+ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1c4f", ATTRS{idProduct}=="0002", RUN+="/home/manchot/.Scripts/kb"
