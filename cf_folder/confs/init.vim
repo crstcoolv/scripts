@@ -47,7 +47,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'tpope/vim-surround'
 Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'kyazdani42/nvim-tree.lua'
+" Plug 'kyazdani42/nvim-tree.lua'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'easymotion/vim-easymotion'
 Plug 'sheerun/vim-polyglot'
@@ -67,17 +67,16 @@ call plug#end()
 filetype plugin indent on
 
 
-lua << EOF
-require("nvim-tree").setup({
-    view = {
-    adaptive_size = true,
-    mappings = {
-      list = {
-        { key = "<Tab>", action = "normal <C-w><C-w>" },
-      },
-    },
-  },})
-EOF
+
+"     view = {
+"     adaptive_size = true,
+"     mappings = {
+"       list = {
+"         { key = "<Tab>", action = "normal <C-w><C-w>" },
+"       },
+"     },
+"   },})
+" EOF
 
 
 " lua << EOF

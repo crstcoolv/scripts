@@ -1,5 +1,6 @@
-#!/bin/bash
+#!/bin/bash 
 
+notify-send wacom
 export DISPLAY=:0
 export XAUTHORITY=/home/manchot/.Xauthority
 

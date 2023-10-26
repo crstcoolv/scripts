@@ -1,7 +1,9 @@
-# teste#
+#  teste#
 set -x EDITOR nvim
 set -x R_LIBS_USER /home/manchot/.local/R
+set -x LS_COLORS "di=0;92"
 
+fish_add_path /sbin
 fish_add_path /home/manchot/.Scripts
 fish_add_path /home/manchot/.local/bin
 fish_add_path /home/manchot/.local/share/gem/ruby/3.0.0/bin
@@ -15,15 +17,15 @@ alias yt="youtube-dl -x --audio-format mp3 "
 alias bm="bashmount"
 alias tm="transmission-remote -l"
 alias tma="transmission-remote -a"
-alias pc="sudo pacman -Sy "
-alias pcr="sudo pacman -Rns "
-alias pcu="sudo pacman -Syu "
+alias pc="sudo apt install"
+alias pcr="sudo apt remove "
+alias pcu="sudo apt update "
 alias bton="bluetoothctl connect A0:AC:69:3D:69:0D"
 alias btoff="bluetoothctl disconnect A0:AC:69:3D:69:0D"
 alias ghcid="kitty --class='ghcid' ghcid --allow-eval&"
 alias rmpc="sudo rm /var/lib/pacman/db.lck"
 alias vifm="vifm . /home/manchot"
-alias dm="encfs /home/manchot/Sync/cript /home/manchot/.local/mnt"
+alias dm="encfs /home/manchot/Insync/crstcoolv@gmail.com/Google\ Drive/Sync/Sync/cript /home/manchot/.local/mnt"
 alias ph="encfs /home/manchot/.local/mnt/.enc /home/manchot/.local/enc"
 alias phx="fusermount -u /home/manchot/.local/enc"
 alias dmx="fusermount -u /home/manchot/.local/mnt"

@@ -5,11 +5,12 @@ font pango:monospace 8
 for_window[class="Gnome-screenshot"] floating enable focus
 for_window[class="thunderbird"] floating enable focus
 for_window[title="Blender Preferences"] floating enable focus move position center 
-for_window[class="pinentry-qt"] floating enable focus
+for_window[class="Gcr-prompter"] floating enable focus
 for_window[class="Galculator"] floating enable focus
-
+for_window[window_role="GtkFileChooserDialog"] floating enable focus
 for_window [class="ghcid"] resize set width 50 ppt 
 for_window [class="mocp"] fullscreen enable
+for_window [class="books"] resize set 100 100 fullscreen enable focus
 assign [class="castero"] castero
 for_window [class="termite"] fullscreen enable
 for_window [class="kitty"] fullscreen enable
@@ -35,7 +36,7 @@ bindsym $mod+p exec --no-startup-id kitty --class="castero" castero
 bindsym $mod+Tab exec --no-startup-id i3spaces
 bindsym $mod+F1 exec --no-startup-id xset dpms force off
 bindsym Print exec --no-startup-id gnome-screenshot -i
-bindsym $mod+m exec --no-startup-id libreoffice /home/manchot/Sync/ncript/docs/meta.ods
+bindsym $mod+m exec --no-startup-id libreoffice /home/manchot/Insync/crstcoolv@gmail.com/Google\ Drive/Sync/Sync/ncript/docs/meta.ods
 bindsym Ctrl+comma exec --no-startup-id volume_mocp down
 bindsym Ctrl+period exec --no-startup-id mocp -G
 bindsym Ctrl+semicolon exec --no-startup-id volume_mocp up
@@ -48,7 +49,7 @@ bindsym Home exec --no-startup-id mocp -r
 bindsym End exec --no-startup-id mocp -f
 bindsym --release F10 exec --no-startup-id wcp
 # bindsym Menu exec thunderbird
-bindsym $mod+b exec --no-startup-id book 
+bindsym $mod+b exec --no-startup-id rofi -show filebrowser
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id wacpen.py
 
@@ -129,7 +130,7 @@ bindsym $mod+Up move up
 bindsym $mod+Right move right
 
 # split in vertical orientation
-bindsym $mod+v exec --no-startup-id brave 
+bindsym $mod+v exec --no-startup-id brave-browser 
 #--incognito --disable-gpu-compositing
 
 # enter fullscreen mode for the focused container
@@ -185,6 +186,7 @@ bindsym $mod+6 exec --no-startup-id wspaces 6
 bindsym $mod+7 exec --no-startup-id wspaces 7
 bindsym $mod+8 exec --no-startup-id wspaces 8 
 bindsym $mod+9 exec --no-startup-id wspaces 9 
+
 # bindsym $mod+Tab exec --no-startup-id  workspaces previus 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1

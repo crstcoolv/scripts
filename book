@@ -1,7 +1,18 @@
 #!/bin/bash
 
-name=$(ls /home/manchot/Documents/books | rofi -font "Fira Code 13" -theme Arc-Dark -dmenu -p "Select book: " -i)
+name=$(ls $1 | rofi -font "Fira Code 13" -theme Arc-Dark -dmenu -p "Select book: " -i)
 
-if [[ -f "/home/manchot/Documents/books/$name" ]]; then
-  zathura  "/home/manchot/Documents/books/$name"
+
+if [[ -d "$1/$name" ]]; then
+  book "$1/$name"
+  exit
+fi
+
+
+if [[ -f "$1/$name" ]]; then
+  if [[ $name == *.epub ]] then
+    fbreader "$1/$name"
+  else
+    zathura  "$1/$name"
+  fi
 fi

@@ -12,7 +12,7 @@ map q :q<cr>
 map vlc :! vlc %f <cr> 
 nnoremap bg :! setwall.py %f <cr>
 nnoremap wp :! wal -i %f <cr>
-
+map srm :! sudo rm -R %f <cr>
 
 " Command used to edit files in various contexts.  The default is vim.
 " If you would like to use another vi clone such as Elvis or Vile

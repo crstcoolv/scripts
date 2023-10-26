@@ -40,13 +40,13 @@ elif [[ $ajust == 'xrandr' ]]; then
 
 	case $1 in
 		up)
-			xrandr --output eDP1 --brightness $xrandr_up
+			xrandr --output eDP-1 --brightness $xrandr_up
 			xrandr_bar=$(awk '{print $1*100}' <<<"${xrandr_up}")
 			notify-send -u low -r 9991 -h int:value:$xrandr_bar  "xrandr brightness $xrandr_bar"
 			# send_notification $1
 			;;
 		down)
-			xrandr --output eDP1 --brightness $xrandr_down
+			xrandr --output eDP-1 --brightness $xrandr_down
 			xrandr_bar=$(awk '{print $1*100}' <<<"${xrandr_down}")
 			notify-send -u low -r 9991 -h int:value:$xrandr_bar "xrandr brightness $xrandr_bar%"
 			# send_notification $1
