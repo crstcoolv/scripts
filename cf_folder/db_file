@@ -4,7 +4,6 @@ coc /home/manchot/.config/nvim/coc-settings.json coc-vim
 vifm /home/manchot/.config/vifm/vifmrc vifm 
 f /home/manchot/.config/fish/config.fish fish 
 dunst /home/manchot/.config/dunst/dunstrc dunst 
-x /home/manchot/.xinitrc xinitrc
 xres /home/manchot/.Xresources Xresources
 pc /home/manchot/.config/picom.conf picom
 v /home/manchot/.config/nvim/init.vim nvim
@@ -12,3 +11,4 @@ touchpad /etc/X11/xorg.conf.d/30-touchpad.conf Xorg-touchpad
 monitor /etc/X11/xorg.conf.d/90-monitor.conf Xorg-monitor
 pinentry /home/manchot/.gnupg/gpg-agent.conf gpg-agent
 xmod /home/manchot/.xmodmap xmodmap
+xinit /home/manchot/.xinitrc xinit
