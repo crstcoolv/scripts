@@ -1,0 +1,8 @@
+#!/bin/bash
+
+
+GP=$(lsusb | grep "Wacom")
+
+if [[ $GP != "" ]]; then
+  /home/manchot/.Scripts/wac
+fi

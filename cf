@@ -2,92 +2,136 @@
 
 import os
 import sys
-import pathlib
 import subprocess
+import pathlib
 
-cf_folder = "/home/manchot/.Scripts/cf_folder/confs"
-cf_db   = "/home/manchot/.Scripts/cf_folder/db_file"
+folder = "/home/manchot/.Scripts/cf_folder"
+db = f"{folder}/db_file"
+
+global cmds, paths
+
+cmds = []
+paths = []
+names = []
+
+def read_db():
+    with open(db) as file:
+        for line in file.readlines():
+            column = line.replace("\n","").split(" ")
+            paths.append((column[0]))
+            names.append(os.path.basename(column[0]))
+            cmds.append(column[1])
+read_db()
 
 
-cfs = []
-cfs_path = []
-cfs_info = []
+def display_cmds():
+    max_word = max([len(i) for i in cmds])
+    cmds_std = [i + ' '*(max_word - len(i)) for i in cmds]
 
-with open(cf_db) as file:
-    for line in file.readlines():
-       column = line.replace("\n","").split(" ")
-       cfs.append(column[0])
-       cfs_path.append(column[1])
-       cfs_info.append(" ".join(column[2:]))
+    for i, v in enumerate(cmds_std):
+        print(f"  {v}  ", "\n"*(i%3==0),end="")
+
+
+def get_cmd_path(cmd):
+    if  cmd in cmds:
+        return paths[cmds.index(cmd)]
+    else:
+        if cmd != 'help':
+            print(f"Command [{cmd}] not available:")
+            display_cmds()
+            print("\n")
+        return False
+
+def add_file_to_db(path, cmd=""):
+    read_db()
+    if path not in paths:
+        if cmd=="" or cmd not in cmds:
+            with open(db, 'a') as file:
+                file.write(f"{path} {cmd}\n")
+        else:
+            print("f{cmd} already in use")
+            exit(1)
+    else:
+        print("file already in folder")
+        exit(1)
+    print(f"{path} added to confs")
+
+# with open(db) as file:
+#     for line in file.readlines():
+#         print(f"{line}")
+
+
+def call_dmenu(vals):
+    cmd = "\n".join(vals) 
+    cmd = f"echo \"{cmd}\" | dmenu -i -fn 'DejaVu Sans-9' -nf '#F8F8F8' -nb '#222222' -sb '#D4D4D4' -sf '#000000'"
+    ps = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+    return str(ps.communicate()[0], encoding='utf-8').replace("\n","")
 
 
 def create_symlinks_from_db_file():
-    for path in cfs_path:
+    for path in paths:
         try:
             dir_path = os.path.dirname(path)
             pathlib.Path(dir_path).mkdir(parents=True, exist_ok=True)
             if os.path.isfile(path):
                 os.remove(path)
             file = os.path.basename(path)
-            os.symlink(f"/{cf_folder}/{file}", path)
+            os.symlink(f"/{folder}/{file}", path)
             print(f"{path} installed")
         except:
             print(f"{path} failed")
-
-def get_max_len(arr):
-    return max([len(i) for i in arr])
-
-
-def print_info():
-    print("To add: cf [cmd] [file] [description]\n")
-    for cmd, desc in zip(cfs, cfs_info):
-        print(f"{' '*(get_max_len(cfs) - len(cmd))} [{cmd}] ->  {desc}")
-    cmd = input("cmd: ")
-    if cmd:
-        open_file(cmd)
-
-
-
-def get_cmd_path(cmd):
-    if cmd in cfs:
-        return cfs_path[cfs.index(cmd)]
-    else:
-        return False
-
-def add_conf(cmd, path, desc):
-    with open(cf_db, 'a') as file:
-        file.write(f"{cmd} {path} {desc}\n")
 
 
 def swap_files():
     file = sys.argv[2]
     cf_file = f"{os.getcwd()}/{file}"
-    cf_file_path = f"{cf_folder}/{file}"
+    cf_file_path = f"{folder}/{file}"
     if os.path.exists(cf_file):
         os.replace(cf_file, cf_file_path)
         os.symlink(cf_file_path, cf_file)
 
-        add_conf(sys.argv[1], cf_file, sys.argv[3])
+        if len(sys.argv) == 4:
+            add_file_to_db(cf_file_path, sys.argv[3])
+        else:
+            add_file_to_db(cf_file_path) 
     else:
         print("file does not exists")
+
+
 
 def open_file(cmd):
     if path := get_cmd_path(cmd):
         subprocess.run(["nvim", f"{path}"])
     else:
         print("cmd not valid!\n")
-        print_info()
+
 
 match len(sys.argv):
-    case 4:
-        swap_files()
-    case 2:
-        if sys.argv[1] == '--help':
-            print("cf install")
-        if sys.argv[1] == 'install':
-            create_symlinks_from_db_file()
-        else:
-            open_file(sys.argv[1])
-    case _:
-        print_info()
+    case 1:
 
+        c = call_dmenu(names)
+
+        if c != "":
+            if sys.stdin and sys.stdin.isatty():
+                subprocess.run(['vim',f"{paths[names.index(c)]}"])
+            else:
+                subprocess.run(['kitty','vim',f"{paths[names.index(c)]}"])
+
+    case 2:
+        if sys.argv[1] == "install":
+            create_symlinks_from_db_file()
+        elif path := get_cmd_path(sys.argv[1]):
+            subprocess.run(["nvim", f"{path}"])
+        else:
+            print("""
+        Usage: cf [cmd]: edit file in vim
+               cf add file [cmd]: creats symlink 
+               cf install :  install configs files
+                  """)
+    case 3:
+        if sys.argv[1] == "add":
+            swap_files()
+
+    case 4:
+        if sys.argv[1] == "add":
+            swap_files()

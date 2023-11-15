@@ -1,9 +1,7 @@
 #!/bin/bash 
 
-notify-send wacom
 export DISPLAY=:0
 export XAUTHORITY=/home/manchot/.Xauthority
-
 
 sleep 1
 
@@ -14,7 +12,7 @@ ACCEL_VEL=$(xinput list-props $ID | grep "Accel Velo" | awk -F"[()]" '{print $2}
 
 
 if [[ $ID != "" ]]; then
-  xsetwacom set $ID Rotate half
+  # xsetwacom set $ID Rotate half
   xsetwacom set $ID Area 0 0 15200 8550
   xsetwacom set $ID Mode Relative
   xsetwacom set $ID CursorProximity 15
@@ -23,5 +21,3 @@ if [[ $ID != "" ]]; then
   xinput set-prop $ID $ACCEL_VEL 1
 
 fi
-
-

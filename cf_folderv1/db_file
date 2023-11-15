@@ -1,0 +1,18 @@
+i /home/manchot/.config/i3/config i3
+c /home/manchot/.config/conky/conky.conf conky
+coc /home/manchot/.config/nvim/coc-settings.json coc-vim 
+vifm /home/manchot/.config/vifm/vifmrc vifm 
+f /home/manchot/.config/fish/config.fish fish 
+dunst /home/manchot/.config/dunst/dunstrc dunst 
+xres /home/manchot/.Xresources Xresources
+pc /home/manchot/.config/picom.conf picom
+v /home/manchot/.config/nvim/init.vim nvim
+touchpad /etc/X11/xorg.conf.d/30-touchpad.conf Xorg-touchpad
+monitor /etc/X11/xorg.conf.d/90-monitor.conf Xorg-monitor
+pinentry /home/manchot/.gnupg/gpg-agent.conf gpg-agent
+xmod /home/manchot/.xmodmap xmodmap
+xinit /home/manchot/.xinitrc xinit
+video /etc/X11/xorg.conf.d/20-intel.conf video conf
+wac /etc/udev/rules.d/wac.rules Wacom
+wacs /home/manchot/.config/systemd/user/wacom.service Wacom service
+gestures /home/manchot/.config/libinput-gestures.conf libinput-gestures.conf
