@@ -120,6 +120,8 @@ match len(sys.argv):
     case 2:
         if sys.argv[1] == "install":
             create_symlinks_from_db_file()
+        elif sys.argv[1] == "edit":
+            subprocess.run(["nvim", f"{db}"])
         elif path := get_cmd_path(sys.argv[1]):
             subprocess.run(["nvim", f"{path}"])
         else:

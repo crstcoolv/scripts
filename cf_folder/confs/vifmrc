@@ -13,6 +13,8 @@ map vlc :! vlc %f <cr>
 nnoremap bg :! setwall.py %f <cr>
 nnoremap wp :! wal -i %f <cr>
 map srm :! sudo rm -R %f <cr>
+map se :! sudo vim %f<cr>
+map sv :! sudo vifm<cr>
 
 " Command used to edit files in various contexts.  The default is vim.
 " If you would like to use another vi clone such as Elvis or Vile
@@ -193,10 +195,7 @@ filextype {*.djvu},<image/vnd.djvu>
 " Audio
 filetype {*.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus},
         \<audio/*>
-       \ {Play using ffplay}
-       \ ffplay -nodisp -autoexit %c,
-       \ {Play using MPlayer}
-       \ mplayer %f,
+        \ mpv %f,
 fileviewer {*.mp3},<audio/mpeg> mp3info
 fileviewer {*.flac},<audio/flac> soxi
 
@@ -238,11 +237,15 @@ filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
         \ gpicview %c,
         \ {View in shotwell}
         \ shotwell,
-fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
-    \ kitty +icat --silent --transfer-mode=stream --place=%pwx%ph@%pxx%py %c %N
-    \ %pc
-    \ kitty +kitten icat --clear --silent %pd
+"fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
+"    \ kitty +icat --silent --transfer-mode=stream --place=%pwx%ph@%pxx%py %c %N
+"   \ %pc
+"    \ kitty +kitten icat --clear --silent %pd
 
+fileviewer <image/*>
+        \ vifmimg draw %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear
 
 
 
@@ -576,3 +579,32 @@ set classify+=' ::*.doc,,*.docx,,*.adoc::'
 set classify+=' ::*.xls,,*.xlsmx::'
 set classify+=' ::*.pptx,,*.ppt::'
 
+fileviewer *.pdf
+        \ vifmimg pdf %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear
+
+    fileviewer *.djvu
+        \ vifmimg djvu %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear
+
+    fileviewer *.epub
+        \ vifmimg epub %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear
+
+    fileviewer <video/*>
+        \ vifmimg video %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear
+
+    fileviewer <image/*>
+        \ vifmimg draw %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear
+
+    fileviewer <audio/*>
+        \ vifmimg audio %px %py %pw %ph %c
+        \ %pc
+        \ vifmimg clear

@@ -89,8 +89,8 @@ floating_modifier $mod
 bindsym $mod+Return exec --no-startup-id $terminal
 bindsym XF86Launch6 exec --no-startup-id muda
 bindsym Ctrl+Return exec --no-startup-id  $terminal
-bindsym Control+BackSpace exec --no-startup-id $terminal -e vifm
-bindsym $mod+BackSpace exec --no-startup-id $terminal sudo vifm
+bindsym Control+BackSpace exec --no-startup-id $terminal -e vifmrun
+bindsym $mod+BackSpace exec --no-startup-id $terminal sudo vifmrun
 
 # kill focused window
 bindsym $mod+q kill

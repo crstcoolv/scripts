@@ -15,10 +15,17 @@ set hidden
 set cc=80
 set smartcase ignorecase nohlsearch
 set fillchars+=vert:\ 
+set autochdir
 let mapleader = " "
+
 
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
+
+nmap <silent> <Leader>t <Plug>TranslateW
+vmap <silent> <Leader>t <Plug>TranslateWV
+
+nmap <leader>a :Ag<cr>
 
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -34,12 +41,16 @@ let g:netrw_preview = 1
 let g:netrw_altv = 1
 let g:fzf_preview_window = ['']
 let g:fzf_layout = { 'down':  '40%'}
+let g:translator_target_lang = 'pt'
 
 filetype off
 call plug#begin('~/.config/nvim/plugged')
+Plug 'voldikss/vim-translator'
+Plug 'preservim/nerdtree'
 Plug 'junegunn/vim-easy-align'
+Plug 'SergioRibera/vim-files'
 Plug 'xolox/vim-misc'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'KabbAmine/vCoolor.vim'
 Plug  'lilydjwg/colorizer', {'on':'ColorToggle'}
 Plug 'xolox/vim-colorscheme-switcher'
@@ -51,7 +62,7 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 " Plug 'kyazdani42/nvim-tree.lua'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'easymotion/vim-easymotion'
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
 Plug 'honza/vim-snippets'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf'
@@ -78,6 +89,7 @@ filetype plugin indent on
 "     },
 "   },})
 " EOF
+
 
 
 " lua << EOF
@@ -121,6 +133,7 @@ filetype plugin indent on
 " colorscheme OceanicNext
 colorscheme beekai
 
+noremap <leader>d :call VimFiles#FileCreateVS()<cr>
 xmap - <Plug>(EasyAlign)
 
 nnoremap <C-space> :NvimTreeToggle<cr>  
@@ -174,7 +187,7 @@ nmap ¥ :
 imap <S-Enter> <C-o>o
 imap <S-Space> <C-o>l<C-o>\ 
 
-nmap <leader>n :NvimTreeToggle<cr>
+nmap <leader>n :NERDTreeToggle<cr>
 nmap s <Plug>(easymotion-overwin-f2)
 
 
@@ -212,6 +225,9 @@ hi CursorLine ctermbg=234 cterm=none
 hi CursorLineNr cterm=bold ctermfg=2 ctermbg=234                                        
 hi StatusLineNC ctermbg=0 ctermfg=244 cterm=none                             
 hi StatusLine ctermbg=0 ctermfg=2 cterm=bold                               
+hi TabLineFill ctermfg=0 
+hi TabLine ctermbg=0 cterm=bold ctermfg=2
+hi TabLineSel ctermbg=2 cterm=bold ctermfg=0
 hi LineNr ctermbg=232                                                          
 hi ErrorMsg ctermfg=214 ctermfg=none                                           
 hi WarningMsg ctermfg=214 ctermfg=none                                         
@@ -229,10 +245,14 @@ hi SignColumn ctermbg=232
 hi ColorColumn ctermbg=none ctermfg=1 cterm=bold                               
 hi SpellBad cterm=underline ctermbg=none ctermfg=none                          
 hi SpellCap ctermbg=none                                                       
-hi TabLineFill ctermbg=237
-hi TabLine ctermbg=237 ctermfg=0 
-hi TabLineSel ctermbg=0 ctermfg=2 cterm=bold
 hi VertSplit ctermfg=235
+
+
+if $USER == 'root'
+hi StatusLine ctermbg=52 ctermfg=248 cterm=bold                               
+hi CursorLineNr cterm=bold ctermfg=125 ctermbg=234                                    
+endif
+
 endfunction
 
 call Colorir()
@@ -241,7 +261,7 @@ function ColorirNext()
 call Colorir()
 endfunction
 
-nmap <F9> :call ColorirNext()<cr>
+nmap <F12> :call ColorirNext()<cr>
 
 autocmd BufWinEnter *.py set makeprg=python\ %
 autocmd BufWinEnter *.rs set makeprg=cargo\ run

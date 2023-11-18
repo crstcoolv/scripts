@@ -16,3 +16,4 @@
 /etc/udev/rules.d/wac.rules wac
 /home/manchot/.config/systemd/user/wacom.service wacs
 /home/manchot/.config/libinput-gestures.conf gestures
+/home/manchot/.Scripts/cf_folder/alacritty.yml a
