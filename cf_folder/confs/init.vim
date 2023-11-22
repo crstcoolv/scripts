@@ -2,6 +2,7 @@ set clipboard=unnamedplus
 set foldmethod=syntax
 set pumheight=20
 set background=dark
+set shortmess+=I
 set foldlevel=10
 set expandtab ts=2 sw=2  
 set rnu nu
@@ -58,6 +59,8 @@ Plug 'flazz/vim-colorschemes'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'tpope/vim-surround'
+Plug 'drsooch/gruber-darker-vim'
+Plug 'dhruvasagar/vim-zoom'
 Plug 'PotatoesMaster/i3-vim-syntax'
 " Plug 'kyazdani42/nvim-tree.lua'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -78,6 +81,8 @@ Plug 'dag/vim-fish'
 call plug#end()
 filetype plugin indent on
 
+
+nnoremap <silent><leader><tab> :call zoom#toggle()<CR>
 
 
 "     view = {
@@ -136,8 +141,8 @@ colorscheme beekai
 noremap <leader>d :call VimFiles#FileCreateVS()<cr>
 xmap - <Plug>(EasyAlign)
 
-nnoremap <C-space> :NvimTreeToggle<cr>  
-nnoremap <leader><Tab> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+" nnoremap <C-space> :NvimTreeToggle<cr>  
+nnoremap <C-space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 tnoremap <Esc> <C-\><C-n>:q!<CR>
 
 nnoremap <C-j> :m .+1<CR>==

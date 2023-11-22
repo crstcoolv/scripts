@@ -1,6 +1,10 @@
 set $mod Mod4
 set $terminal alacritty
 
+
+bindsym $mod+slash exec --no-startup-id xdotool key a
+
+
 font pango:monospace 8
 for_window[class="Gnome-screenshot"] floating enable focus
 for_window[class="thunderbird"] floating enable focus

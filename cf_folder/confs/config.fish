@@ -4,6 +4,7 @@ set -x R_LIBS_USER /home/manchot/.local/R
 set -x LS_COLORS "di=0;92"
 
 fish_add_path /sbin
+fish_add_path /snap/bin
 fish_add_path $HOME/.cargo/bin 
 fish_add_path /home/manchot/.Scripts
 fish_add_path /home/manchot/.local/bin
