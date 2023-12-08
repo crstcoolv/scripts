@@ -122,6 +122,12 @@ set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
 
 mark b ~/bin/
 mark h ~/
+mark w ~/Downloads
+mark d ~/Documents
+mark b ~/Documents/books
+mark t /var/lib/transmission-daemon/downloads/
+mark a ~/Insync/crstcoolv@gmail.com/Google\ Drive/Sync/Sync/ncript
+
 
 " ------------------------------------------------------------------------------
 
@@ -173,6 +179,10 @@ command! reload :write | restart full
 "
 " You can also add %CLEAR if you want to clear screen before running FUSE
 " program.
+
+
+filextype {*.xopp} swallow xournalpp %f
+
 
 " Pdf
 filextype {*.pdf},<application/pdf> zathura %c %i &, apvlv %c, xpdf %c
@@ -608,3 +618,4 @@ fileviewer *.pdf
         \ vifmimg audio %px %py %pw %ph %c
         \ %pc
         \ vifmimg clear
+fileviewer *.[ch],*.[ch]pp,*.[ch]xx,*.py,*.hs,*.rs batcat --color always --wrap never --pager never %c -p

@@ -13,10 +13,12 @@ fish_add_path /home/manchot/.local/share/gem/ruby/3.0.0/bin
 set fish_greeting
 
 alias pw="poweroff"
+alias ll="vim /home/manchot/Documents/ingles"
 alias kb="setxkbmap -model abnt2 -layout br; xmodmap .xmodmap"
 alias py="python"
 alias yt="youtube-dl -x --audio-format mp3 "
 alias bm="bashmount"
+alias cal="ncal -b"
 alias tm="transmission-remote -l"
 alias tma="transmission-remote -a"
 alias ap="sudo apt install"
@@ -27,7 +29,7 @@ alias apl="sudo apt list --upgradable"
 alias apa="sudo apt autopurge"
 alias bton="bluetoothctl connect A0:AC:69:3D:69:0D"
 alias btoff="bluetoothctl disconnect A0:AC:69:3D:69:0D"
-alias ghcid="kitty --class='ghcid' ghcid --allow-eval&"
+# alias ghcid="kitty --class='ghcid' ghcid --allow-eval&"
 alias rmpc="sudo rm /var/lib/pacman/db.lck"
 alias vifm="vifmrun . /home/manchot"
 alias dm="encfs /home/manchot/Insync/crstcoolv@gmail.com/Google\ Drive/Sync/Sync/cript /home/manchot/.local/mnt"
@@ -74,4 +76,6 @@ function fish_right_prompt
 end
 
 #set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /home/manchot/.ghcup/bin # ghcup-env
+#set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/manchot/.ghcup/bin $PATH # ghcup-env
+
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/manchot/.ghcup/bin $PATH # ghcup-env

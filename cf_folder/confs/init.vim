@@ -27,6 +27,8 @@ nmap <silent> <Leader>t <Plug>TranslateW
 vmap <silent> <Leader>t <Plug>TranslateWV
 
 nmap <leader>a :Ag<cr>
+nmap <silent> J :normal }<cr>
+nmap <silent> K :normal {<cr>
 
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -48,6 +50,7 @@ filetype off
 call plug#begin('~/.config/nvim/plugged')
 Plug 'voldikss/vim-translator'
 Plug 'preservim/nerdtree'
+Plug 'neovimhaskell/haskell-vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'SergioRibera/vim-files'
 Plug 'xolox/vim-misc'
@@ -149,7 +152,7 @@ nnoremap <C-j> :m .+1<CR>==
 nnoremap <C-k> :m .-2<CR>==
 vnoremap <C-j> :m '>+1<CR>gv=gv
 vnoremap <C-k> :m '<-2<CR>gv=gv
-nmap <leader>p :silent exec "!ghcid"<cr>
+nmap <leader>p :silent exec "!ghcid.py $(pwd)"<cr>
 nmap <Backspace> :Buffers<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
