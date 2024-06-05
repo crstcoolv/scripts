@@ -8,12 +8,14 @@ remove mod4 = Super_L
 keycode 133 = Alt_L
 keycode 64 = Super_L
 
-keycode 66 = slash
-keycode 24 = q Q q Q Caps_Lock
+keycode 66 = slash bar slash bar backslash backslash
+keycode  60 = period greater period greater bar bar bar bar
+keycode 24 = q Q q Q backslash backslash 
 
 add mod1 = Alt_L 
 add mod4 = Super_L
 
+keycode  54 = c C c C Caps_Lock
 
 keycode  47 = ccedilla Ccedilla ccedilla Ccedilla Up
 keycode  46 = l L l L Down

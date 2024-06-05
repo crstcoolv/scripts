@@ -2,7 +2,7 @@
 set -x EDITOR nvim
 set -x R_LIBS_USER /home/manchot/.local/R
 set -x LS_COLORS "di=0;92"
-
+fish_ssh_agent
 fish_add_path /sbin
 fish_add_path /snap/bin
 fish_add_path $HOME/.cargo/bin 
@@ -46,7 +46,7 @@ alias rs="redshift -O 4800"
 alias rsx="redshift -x"
 
 alias hdmi="xrandr --output HDMI1 --auto --set audio on"
-alias hdmi_off="xrandr --output HDMI1 --auto --off"
+alias hdmioff="xrandr --output HDMI1 --auto --off"
 
 if status --is-login
      if test -z "$DISPLAY" -a $XDG_VTNR = 1
