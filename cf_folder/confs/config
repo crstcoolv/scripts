@@ -274,6 +274,6 @@ exec --no-startup-id insync start
 exec --no-startup-id libinput-gestures-setup start 
 exec --no-startup-id gromit-mpx
 exec --no-startup-id redshift -O 4800
-exec --no-startup-id /home/manchot/.local/lib/activitywatch/aw-qt
+# exec --no-startup-id /home/manchot/.local/lib/activitywatch/aw-qt
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
