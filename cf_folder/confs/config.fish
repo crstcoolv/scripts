@@ -1,4 +1,5 @@
 #  teste#
+
 set -x EDITOR nvim
 set -x R_LIBS_USER /home/manchot/.local/R
 set -x LS_COLORS "di=0;92"
@@ -12,6 +13,7 @@ fish_add_path /home/manchot/.local/share/gem/ruby/3.0.0/bin
 
 set fish_greeting
 
+alias webcam="sudo vim /etc/modprobe.d/blacklist.conf"     
 alias pw="poweroff"
 alias ll="vim /home/manchot/Documents/ingles"
 alias kb="setxkbmap -model abnt2 -layout br; xmodmap .xmodmap"
