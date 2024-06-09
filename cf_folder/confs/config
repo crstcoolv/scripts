@@ -18,7 +18,7 @@ font pango:monospace 8
 for_window[class="Gnome-screenshot"] floating enable focus
 for_window[class="thunderbird"] floating enable focus
 for_window[title="Blender Preferences"] floating enable focus move position center 
-for_window[class="Gcr-prompter"] floating enable focus
+for_window[class="gcr-prompter"] floating_enable focus 
 for_window[class="Galculator"] floating enable focus
 for_window[window_role="GtkFileChooserDialog"] floating enable focus
 for_window [class="ghcid"] resize shrink width 400 px 
