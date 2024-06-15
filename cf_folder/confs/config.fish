@@ -12,6 +12,8 @@ fish_add_path /home/manchot/.local/bin
 fish_add_path /home/manchot/.local/share/gem/ruby/3.0.0/bin
 
 set fish_greeting
+fzf --fish | source
+zoxide init fish --cmd cd | source
 
 alias webcam="sudo vim /etc/modprobe.d/blacklist.conf"     
 alias pw="poweroff"
@@ -81,3 +83,5 @@ end
 #set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/manchot/.ghcup/bin $PATH # ghcup-env
 
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /home/manchot/.ghcup/bin $PATH # ghcup-env
+
+set -g FZF_COMPLETION_TRIGGER '**'

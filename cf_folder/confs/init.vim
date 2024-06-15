@@ -50,14 +50,18 @@ filetype off
 call plug#begin('~/.config/nvim/plugged')
 Plug 'voldikss/vim-translator'
 Plug 'preservim/nerdtree'
+Plug 'tpope/vim-vinegar'
 Plug 'neovimhaskell/haskell-vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'junegunn/vim-easy-align'
 Plug 'SergioRibera/vim-files'
+" Plug 'nvim-telescope/telescope.nvim'
 Plug 'xolox/vim-misc'
 "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'KabbAmine/vCoolor.vim'
 Plug  'lilydjwg/colorizer', {'on':'ColorToggle'}
 Plug 'xolox/vim-colorscheme-switcher'
+Plug 'stevearc/oil.nvim'
 Plug 'flazz/vim-colorschemes'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'KabbAmine/vCoolor.vim'
@@ -100,6 +104,13 @@ nnoremap <silent><leader><tab> :call zoom#toggle()<CR>
 " EOF
 
 
+lua << EOF
+require("oil").setup({
+  vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory"})
+})
+
+EOF
+
 
 " lua << EOF
 " require'nvim-treesitter.configs'.setup {
@@ -136,11 +147,11 @@ nnoremap <silent><leader><tab> :call zoom#toggle()<CR>
 "   },
 " }
 
-" EOF
+"EOF
 
-" colorscheme badwolf
+colorscheme badwolf
 " colorscheme OceanicNext
-colorscheme beekai
+" colorscheme beekai
 
 noremap <leader>d :call VimFiles#FileCreateVS()<cr>
 xmap - <Plug>(EasyAlign)
@@ -227,34 +238,34 @@ inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 command! -nargs=0 Format :call CocActionAsync('format')
 command! -bang ProjectFiles call fzf#vim#files(getcwd(), <bang>0)
 
-function Colorir()
-hi Normal ctermbg=none                                                         
-hi NonText cterm=none ctermfg=244 ctermbg=none                                 
-hi CursorLine ctermbg=234 cterm=none                                           
-hi CursorLineNr cterm=bold ctermfg=2 ctermbg=234                                        
-hi StatusLineNC ctermbg=0 ctermfg=244 cterm=none                             
-hi StatusLine ctermbg=0 ctermfg=2 cterm=bold                               
+hi Normal ctermbg=none guibg=none                                                        
+
+hi NonText cterm=none ctermfg=244 guifg=#808080 guibg=none ctermbg=none                                 
+hi CursorLine ctermbg=234 cterm=none  guibg=#282828                                        
+hi CursorLineNr cterm=bold ctermfg=2 guifg=#3EFF37 ctermbg=234  guibg=#282828                                     
+hi StatusLineNC ctermbg=0 ctermfg=244 cterm=none guibg=none guifg=#808080                          
+hi StatusLine ctermbg=0 guibg=0 guifg=#3EFF37 ctermfg=2 cterm=bold                               
 hi TabLineFill ctermfg=0 
-hi TabLine ctermbg=0 cterm=bold ctermfg=2
-hi TabLineSel ctermbg=2 cterm=bold ctermfg=0
-hi LineNr ctermbg=232                                                          
+hi TabLine ctermbg=0 cterm=bold ctermfg=2 guifg=#3EFF37
+hi TabLineSel ctermbg=2 cterm=bold ctermfg=0 guibg=#3EFF37
+hi LineNr ctermbg=232 guibg=#080808                                                         
 hi ErrorMsg ctermfg=214 ctermfg=none                                           
 hi WarningMsg ctermfg=214 ctermfg=none                                         
-hi Pmenu ctermbg=0 ctermfg=253                                            
-hi PmenuSel cterm=bold ctermbg=237 ctermfg=3                                            
-hi PmenuBar ctermfg=0 ctermbg=0
-hi PmenuSbar ctermfg=0 ctermbg=0
-hi PmenuThumb ctermfg=0 ctermbg=0
+hi Pmenu ctermbg=0 ctermfg=253 guibg=#000000 guifg=#dadada                         
+hi PmenuSel cterm=bold ctermbg=237 ctermfg=3  guibg=#3a3a3a guifg=#3EFF37                                          
+hi PmenuBar ctermfg=0 ctermbg=0 guifg=#000000 guibg=#000000
+hi PmenuSbar ctermfg=0 ctermbg=0 guifg=#000000 guibg=#000000
+hi PmenuThumb ctermfg=0 ctermbg=0 guifg=#000000 guibg=#000000
 " hi fzf2 ctermbg=232                                                            
 " hi fzf1 ctermbg=232                                                            
 " hi fzf3 ctermbg=232                                                            
-hi VertSplit ctermfg=245 ctermbg=233                                           
+hi VertSplit ctermfg=245 ctermbg=233 guifg=#000000 guibg=#121212                                           
 hi Folded ctermbg=233 ctermfg=245                                              
-hi SignColumn ctermbg=232                                                     
-hi ColorColumn ctermbg=none ctermfg=1 cterm=bold                               
+hi SignColumn ctermbg=232 guibg=none                                                    
+hi ColorColumn ctermbg=none ctermfg=1 cterm=bold guibg=none                              
 hi SpellBad cterm=underline ctermbg=none ctermfg=none                          
 hi SpellCap ctermbg=none                                                       
-hi VertSplit ctermfg=235
+hi VertSplit ctermfg=235 guifg=#262626
 
 
 if $USER == 'root'
@@ -262,15 +273,6 @@ hi StatusLine ctermbg=52 ctermfg=248 cterm=bold
 hi CursorLineNr cterm=bold ctermfg=125 ctermbg=234                                    
 endif
 
-endfunction
-
-call Colorir()
-
-function ColorirNext()
-call Colorir()
-endfunction
-
-nmap <F12> :call ColorirNext()<cr>
 
 autocmd BufWinEnter *.py set makeprg=python\ %
 autocmd BufWinEnter *.rs set makeprg=cargo\ run
