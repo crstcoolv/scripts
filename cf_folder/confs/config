@@ -22,6 +22,8 @@ for_window[class="gcr-prompter"] floating_enable focus
 for_window[class="Gretl_x11"] floating enable focus
 for_window[class="XCalc"] floating enable focus
 for_window[class="Galculator"] floating enable focus
+for_window[class="gnuplot_qt"] floating enable focus
+for_window[class="Qalculate-gtk"] floating enable focus
 for_window[window_role="GtkFileChooserDialog"] floating enable focus
 for_window [class="ghcid"] resize shrink width 400 px 
 for_window [class="mocp"] fullscreen enable
@@ -32,7 +34,6 @@ for_window [class="kitty"] fullscreen enable
 for_window[class="small"] floating enable focus
 for_window[class="small"] resize set 800 450
 for_window[class="small"] move position center
-for_window[class="small"] move workspace 0
 for_window [class="org.pwmt.zathura"] fullscreen enable
 for_window [class="Zathura"] fullscreen enable
 for_window [class="sxiv"] fullscreen enable
@@ -56,7 +57,7 @@ client.background #000000
 workspace_auto_back_and_forth yes
 
 bindsym $mod+apostrophe exec --no-startup-id i3new.py 
-bindsym $mod+p exec --no-startup-id kitty --class="small" vim /home/manchot/Documents/ingles
+bindsym $mod+p exec --no-startup-id alacritty --class="small" -e nvim --clean /home/manchot/Documents/ingles
 bindsym $mod+Tab exec --no-startup-id i3spaces
 bindsym $mod+F1 exec --no-startup-id sleep 1 && xset dpms force off
 bindsym Print exec --no-startup-id gnome-screenshot -i
@@ -64,7 +65,7 @@ bindsym $mod+m exec --no-startup-id libreoffice /home/manchot/Insync/crstcoolv@g
 bindsym Ctrl+comma exec --no-startup-id volume_mocp down
 # bindsym Ctrl+period exec --no-startup-id mocp -G
 bindsym Ctrl+semicolon exec --no-startup-id volume_mocp up
-bindsym $mod+g exec --no-startup-id galculator
+bindsym $mod+g exec --no-startup-id qalculate-gtk
 bindsym Ctrl+Shift+semicolon exec --no-startup-id kitty --class="mocp" mocp
 bindsym Control+l exec --no-startup-id mocp -k -10
 bindsym Control+ccedilla exec --no-startup-id mocp -k 10
@@ -123,7 +124,7 @@ bindsym --release $mod+Shift+q exec --no-startup-id xkill
 bindsym $mod+x exec --no-startup-id xournalpp
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id j4-dmenu-desktop --term=kitty --dmenu="dmenu -i -fn 'DejaVu Sans-9' -nf '#F8F8F8' -nb '#222222' -sb '#D4D4D4' -sf '#000000' " --no-generic
+bindsym $mod+d exec --no-startup-id j4-dmenu-desktop --term=alacritty --dmenu="dmenu -i -fn 'DejaVu Sans-9' -nf '#F8F8F8' -nb '#222222' -sb '#D4D4D4' -sf '#000000' " --no-generic
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -fn 'DejaVu Sans-9' -nf '#F8F8F8' -nb '#222222' -sb '#D4D4D4' -sf '#000000'"
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
